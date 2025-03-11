@@ -32,7 +32,7 @@ with st.sidebar:
     st.title("DBS Bike Sharing Dashboard")
     menu = st.selectbox("Pilih Data untuk Ditampilkan", [
         "Clustering", "Perbandingan Peminjam", "Pola Penggunaan Sepeda", 
-        "Pengaruh Cuaca per Hari", "Hubungan Musim dan Cuaca"
+        "Pengaruh Cuaca per Hari", "Hubungan Musim dan Cuaca", "Analisis Hari"
     ])
 
 # Tampilan berdasarkan menu
@@ -97,5 +97,16 @@ elif menu == "Hubungan Musim dan Cuaca":
     sns.heatmap(pivot_korelasi, annot=True, cmap='coolwarm', fmt='.0f')
     plt.title("Hubungan Musim dan Cuaca terhadap Jumlah Pengguna")
     st.pyplot(plt)
-    
+
+elif menu == "Analisis Hari":
+    st.subheader("Analisis Peminjaman Berdasarkan Hari")
+    df_hari = df_day.groupby("weekday").agg({"cnt": "mean"}).reset_index()
+    plt.figure(figsize=(10, 6))
+    sns.barplot(x=df_hari["weekday"], y=df_hari["cnt"], palette="coolwarm")
+    plt.xlabel("Hari")
+    plt.ylabel("Rata-rata Peminjaman")
+    plt.title("Rata-rata Peminjaman Sepeda per Hari")
+    st.pyplot(plt)
+    st.write(df_hari)
+
 st.caption("Adhim Khairil Anam")
