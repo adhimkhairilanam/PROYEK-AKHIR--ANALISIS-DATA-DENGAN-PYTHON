@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Load data
-df_day = pd.read_csv("Dashboard\df_day.csv")
-df_hour = pd.read_csv("Dashboard\df_hour.csv")
+df_day = pd.read_csv("Dashboard/df_day.csv")
+df_hour = pd.read_csv("Dashboard/df_hour.csv")
 
 # Mapping kategori musim
 kategori_musim = {
